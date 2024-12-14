@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+
+  # 如果需要数据库，可以在这里添加
+  db:
+    image: bitnami/mysql:8.0.25
+    # ports:
+    #     - 3306:3306
+    environment:
+        MYSQL_DATABASE: innoshop
+        MYSQL_ROOT_PASSWORD: DkYlXXHO2c5K
+        MYSQL_USER: user
+        MYSQL_PASSWORD: iMuWqdtRFWUC
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
